@@ -1,0 +1,266 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gas Tracker</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    gap: 12px;
+    min-height: 100vh;
+  }
+  .search-bar {
+    width: 100%;
+    max-width: 520px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #666;
+    font-size: 16px;
+  }
+  .search-bar svg { color: #555; flex-shrink: 0; }
+  .card {
+    width: 100%;
+    max-width: 520px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #ccc;
+  }
+  .gwei-avg { font-size: 40px; font-weight: 600; color: #4db8ff; }
+  .gwei-high { font-size: 40px; font-weight: 600; color: #ff6b4a; }
+  .details { font-size: 15px; color: #888; text-align: center; line-height: 1.7; }
+</style>
+</head>
+<body>
+
+  <div class="search-bar">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    Search by Address / Txn Hash / Block
+  </div>
+
+  <div class="card">
+    <div class="label">😁 Average</div>
+    <div class="gwei-avg">0.168 gwei</div>
+    <div class="details">
+      Base: 0.168 | Priority: 0<br>
+      &lt; $0.01 | ~ 5-7 hours
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">🙂 High</div>
+    <div class="gwei-high">0.192 gwei</div>
+    <div class="details">
+      Base: 0.191 | Priority: 0.001<br>
+      &lt; $0.01 | ~ 1-2 hours
+    </div>
+  </div>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transaction</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #010e28;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  .transaction {
+    width: 100%;
+    max-width: 600px;
+    padding: 16px 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .timestamp {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 12px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .icon-wrap {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+  .circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #2b7fe0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .circle svg {
+    color: #2b7fe0;
+  }
+  .badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: #555;
+  }
+  .info { display: flex; flex-direction: column; gap: 4px; }
+  .title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .status {
+    font-size: 14px;
+    font-weight: 600;
+    color: #b8860b;
+  }
+  .address {
+    font-size: 12px;
+    color: #999;
+    margin-top: 2px;
+  }
+  .amount {
+    font-size: 16px;
+    color: #aaa;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+
+  <div class="transaction">
+    <div class="timestamp">Mar 14 at 10:20 UTC</div>
+    <div class="row">
+      <div class="left">
+        <div class="icon-wrap">
+          <div class="circle">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <line x1="7" y1="17" x2="17" y2="7"/>
+              <polyline points="7 7 17 7 17 17"/>
+            </svg>
+          </div>
+          <div class="badge">?</div>
+        </div>
+        <div class="info">
+          <span class="title">Send BDAG</span>
+          <span class="address">0xEd7f0D18………38DbEB5744e5</span>
+          <span class="status">Pending</span>
+        </div>
+      </div>
+      <div class="amount">9179 BDAG</div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Category Carousel</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f1f1f2;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.category-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 15px auto;
+    width: 61%;
+    position: relative;
+    gap: 5px;
+}
+
+.category-slider {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    flex: 1;
+}
+
+
+.category-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.category-item {
+    flex: 0 0 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.category-img {
+    width: 110px;
+    height: 100px;
+    background-color: #d4d4d6;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.category-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.category-item p {
+    font-size: 11px;
+    text-align: center;
+    color: #313133;
+    margin: 0;
+}
+
+.slider-btn {
+    background-color: #d4d4d6;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #555;
+}
+
+.slider-btn:hover {
+    background-color: #bbb;
+}
+
+.top-items{
+  width: 61%;
+  height: 36vh;
+  border-radius: 5px;
+  margin: 15px auto;
+  background-color: #fff; 
+}
+.top-items .top-header {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-header {
+  margin-bottom: 10px;
+  background-color: #e61601;
+  color: white;
+  height: 40px;
+  padding: 5px 50px;
+}
+.top-header img{
+    width: 20px;
+    height: auto;
+}
+
+.top-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.top-header a {
+  font-size: 13px;
+  color: white;
+  text-decoration: none;
+}
+
+.property-cards {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0px 15px;
+}
+
+.property-cards::-webkit-scrollbar {
+   display: none;
+}
+
+.property-card {
+  flex: 0 0 150px;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.property-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transform: scale(1.02);
+  border-radius: 5px;
+
+}
+
+.card-img {
+  position: relative;
+  width: 100%;
+  height: 150px;
+}
+
+.card-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.discount {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #fef3e9;
+  color: #f8982d;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+
+.card-info {
+  padding: 8px;
+}
+
+.product-name {
+  font-size: 12px;
+  color: #313133;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
+.new-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 2px;
+}
+
+.old-price {
+  font-size: 11px;
+  color: #999;
+  text-decoration: line-through;
+}
+.items-left {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.progress {
+    height: 10px !important;
+}
+.progress-bar {
+    background-color: #f68b1e !important;
+}
+.product-category {
+    width: 61%;
+    margin: 10px auto;
+    border-radius: 5px;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.grid {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.grid:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.grid img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.grid p {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 8px;
+    color: #313133;
+}
+.top-sellers{
+  width: 61%;
+  height: 30vh;
+  border-radius: 5px;
+  margin: 15px auto;
+  background-color: white;
+}
+.top-sellers .top-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #ff9900;
+    color: #000;
+}
+.top-sellers .top-header h2{
+    padding-top: 12px;
+}
+.top-sellers .top-header a{
+    color: #000;
+}
+.sponsored{
+  width: 61%;
+  height: 30vh;
+  border-radius: 5px;
+  margin: 15px auto;
+  background-color: white;
+}
+.sponsored .top-header{
+    display: flex;
+    justify-content: start;
+    padding: 10px 10px;
+    background-color: white;
+    color: #4b3141;
+}
+ .sponsored.property-card:hover {
+      transform: scale(1.01);
+}
+.deals-category {
+            width: 61%;
+            margin: 10px auto;
+            border-radius: 5px;
+            background-color: #fff;
+            overflow: hidden;
+        }
+        .deals-header {
+            background-color: #f68b1e;
+            padding: 15px 15px 5px 15px;
+            display: flex;
+            /* align-items: center; */
+            justify-content: space-between;
+        }
+
+        .deals-header h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .deals-header h2 span {
+            font-weight: 400;
+        }
+
+        .deals-header a {
+            font-size: 13px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .deals-header a:hover {
+            text-decoration: underline;
+        }
+
+      
+        .deals {
+            padding: 10px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+        }
+
+      
+        .child {
+            border: 1px solid #f1f1f2;
+            border-radius: 5px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .child:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .deals-image {
+            position: relative;
+            width: 100%;
+            height: 150px;
+        }
+
+        .deals-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .discount {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background-color: #fef3e9;
+            color: #f8982d;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .child-info {
+            padding: 6px;
+        }
+
+        .product-name {
+            font-size: 11px;
+            color: #313133;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-bottom: 3px;
+        }
+
+        .new-price {
+            font-size: 12px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 0px;
+        }
+
+        .old-price {
+            font-size: 10px;
+            color: #999;
+            text-decoration: line-through;
+        }
+.nivea-category {
+    width: 61%;
+    border-radius: 5px;
+    margin: 10px auto;
+    background-color: white;
+    overflow: hidden;
+}
+
+.nivea-category .top-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f68b1e;
+    padding: 10px 15px 5px 15px;         
+}
+
+.nivea-category .top-header h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: black;               
+}
+
+.nivea-category .top-header a {
+    font-size: 13px;
+    color: black;
+    text-decoration: none;
+}
+
+.nivea-category .top-header a:hover {
+    text-decoration: underline;
+}
+
+
+
+@media (max-width: 1024px) {
+    .category-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 15px auto;
+    width: 100%;
+    position: relative;
+    gap: 5px;
+}
+}
+    </style>
+</head>
+<body>
+
+   <div class="category-wrapper">
+    <button class="slider-btn prev-btn">&#8249;</button>
+    <div class="category-slider">
+        <div class="category-item">
+            <div class="category-img">
+                <img src="./assets/jumia_scroll01.png" alt="">
+            </div>
+            <p>Awoof Deals</p>
+        </div>
+        <div class="category-item">
+            <div class="category-img">
+                <img src="./assets/jumia_scroll02.png" alt="">
+            </div>
+            <p>Up to 80% Off</p>
+        </div>
+        <div class="category-item">
+            <div class="category-img">
+                <img src="./assets/jumia_scroll03.jpg" alt="">
+            </div>
+            <p>Men's Fashion</p>
+        </div>
+        <div class="category-item">
+            <div class="category-img">
+                <img src="./assets/jumia_scroll04.jpg" alt="">
+            </div>
+            <p>Up to 50% Off</p>
+        </div>
+        <div class="category-item">
+            <div class="category-img">
+                <img src="./assets/jumia_scroll05.png" alt="">
+            </div>
+            <p>Send Packages Securely</p>
+        </div>
+        <div class="category-item">
+            <div class="category-img">
+                <img src="./assets/jumia_scroll06.gif" alt="">
+            </div>
+            <p>Top Picks For You</p>
+        </div>
+        <div class="category-item">
+            <div class="category-img">
+                <img src="./assets/jumia_scroll07.gif" alt="">
+            </div>
+            <p>Call for deals</p>
+        </div>
+        <div class="category-item">
+            <div class="category-img">
+                <img src="./assets/jumia_scroll08.png" alt="">
+            </div>
+            <p>Unlock Your Deal</p>
+        </div>
+        <div class="category-item">
+            <div class="category-img">
+                <img src="./assets/jumia_scroll09.jpg" alt="">
+            </div>
+            <p>Unlock Your Deal</p>
+        </div>
+        <div class="category-item">
+            <div class="category-img">
+                <img src="./assets/jumia_scroll10.png" alt="">
+            </div>
+            <p>Unlock Your Deal</p>
+        </div>
+        <div class="category-item">
+            <div class="category-img">
+                <img src="./assets/jumia_scroll11.jpg" alt="">
+            </div>
+            <p>Unlock Your Deal</p>
+        </div>
+    </div>
+    <button class="slider-btn next-btn">&#8250;</button>
+</div>
+
+
+    <div class="top-items">
+        <div class="top-header">
+          <h2>
+            <img src="/assets/flashsales.svg" alt="">
+            Flash Sales
+          </h2>
+          <h2>Time Left: <strong>03h : 18m : 50s</strong></h2>
+          <a href="#">See All ›</a>
+        </div>
+
+        <div class="property-cards">
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-64%</span>
+                    <img src="./assets/jumia_flashsales01.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">SILVER CREST 2L industrial 8500...</p>
+                    <p class="new-price">₦ 21,750</p>
+                    <p class="old-price">₦ 60,000</p>
+                    <p class="items-left">100 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-19%</span>
+                    <img src="./assets/jumia_flashsales02.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Hisense 20 Litres Microwave (H...)</p>
+                    <p class="new-price">₦ 77,075</p>
+                    <p class="old-price">₦ 94,000</p>
+                    <p class="items-left">89 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 89%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-76%</span>
+                    <img src="./assets/jumia_flashsales03.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Hikers 32" Inch Frameless Andr...</p>
+                    <p class="new-price">₦ 110,250</p>
+                    <p class="old-price">₦ 460,563</p>
+                    <p class="items-left">76 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 76%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-18%</span>
+                    <img src="./assets/jumia_flashsales04.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Mi + 32" Inches Smart Digital Sa...</p>
+                    <p class="new-price">₦ 105,975</p>
+                    <p class="old-price">₦ 120,673</p>
+                    <p class="items-left">100 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-17%</span>
+                    <img src="./assets/jumia_flashsales05.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Aeon 90Litres Chest Freezer (AC...)</p>
+                    <p class="new-price">₦ 198,999</p>
+                    <p class="old-price">₦ 230,000</p>
+                    <p class="items-left">87 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 87%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-9%</span>
+                    <img src="./assets/jumia_flashsales06.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Mi + (Mij) 43" Inches Digital Sat...</p>
+                    <p class="new-price">₦ 186,829</p>
+                    <p class="old-price">₦ 205,511</p>
+                    <p class="items-left">100 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-19%</span>
+                    <img src="./assets/jumia_flashsales07.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Maxi 20 Litres Manual Microwa...</p>
+                    <p class="new-price">₦ 53,849</p>
+                    <p class="old-price">₦ 66,550</p>
+                    <p class="items-left">100 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-1%</span>
+                    <img src="./assets/jumia_flashsales08.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">XIAOMI REDMI A5 - 6.88 3GB R..</p>
+                    <p class="new-price">₦ 109,706</p>
+                    <p class="old-price">₦ 111,330</p>
+                    <p class="items-left">100 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-17%</span>
+                    <img src="./assets/jumia_flashsales09.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">AEON 85L Double Door Fridge ...</p>
+                    <p class="new-price">₦ 182,759</p>
+                    <p class="old-price">₦ 219,315</p>
+                    <p class="items-left">47 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 47%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-28%</span>
+                    <img src="./assets/jumia_flashsales10.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Infinix Hot 60i 6.78" 4GB RAM/1...</p>
+                    <p class="new-price">₦ 153,999</p>
+                    <p class="old-price">₦ 212,442</p>
+                    <p class="items-left">100 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-21%</span>
+                    <img src="./assets/jumia_flashsales11.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Aeon 3 Burner, 1 Electric 50 x 5...</p>
+                    <p class="new-price">₦ 129,999</p>
+                    <p class="old-price">₦ 164,390</p>
+                    <p class="items-left">100 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-10%</span>
+                    <img src="./assets/jumia_flashsales12.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Hikers 55" Inch Frameless Andr ..</p>
+                    <p class="new-price">₦ 322,400</p>
+                    <p class="old-price">₦ 358,226</p>
+                    <p class="items-left">100 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-20%</span>
+                    <img src="./assets/jumia_flashsales13.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Nexus 4 Burner (4 + 0) Gas Coo...</p>
+                    <p class="new-price">₦ 144,999</p>
+                    <p class="old-price">₦ 101,705</p>
+                    <p class="items-left">92 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 92%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-1%</span>
+                    <img src="./assets/jumia_flashsales14.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">itel A100C 6.6" 2GB RAM/64GB ...</p>
+                    <p class="new-price">₦ 89,800</p>
+                    <p class="old-price">₦ 89,900</p>
+                    <p class="items-left">89 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 89%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-30%</span>
+                    <img src="./assets/jumia_flashsales15.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Sun King Solar Fan With 20W S...</p>
+                    <p class="new-price">₦ 94,500</p>
+                    <p class="old-price">₦ 135,700</p>
+                    <p class="items-left">75 Items Left</p>
+                    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar text-bg-success" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+
+    <div class="product-category">
+        <div class="grid child-a">
+            <img src="/assets/products_category01.jpg" alt="">
+            <p>Phones & Tablets</p>
+        </div>
+        <div class="grid child-a">
+            <img src="/assets/products_category02.png" alt="">
+            <p>Appliances</p>
+        </div>
+        <div class="grid child-a">
+            <img src="/assets/products_category03.jpg" alt="">
+            <p>FAshion</p>
+        </div>
+        <div class="grid child-a">
+            <img src="/assets/products_category04.png" alt="">
+            <p>TV & Audio</p>
+        </div>
+        <div class="grid child-a">
+            <img src="/assets/products_category05.png" alt="">
+            <p>Beauty Must Have</p>
+        </div>
+        <div class="grid child-a">
+            <img src="/assets/products_category06.png" alt="">
+            <p>Sneakers</p>
+        </div>
+        <div class="grid child-a">
+            <img src="/assets/products_category07.png" alt="">
+            <p>Computing</p>
+        </div>
+        <div class="grid child-a">
+            <img src="/assets/products_category08.png" alt="">
+            <p>Generators & Inverters</p>
+        </div>
+        <div class="grid child-a">
+            <img src="/assets/products_category09.png" alt="">
+            <p>Mobile Accessories</p>
+        </div>
+        <div class="grid child-a">
+            <img src="/assets/products_category10.jpg" alt="">
+            <p>Home & Office</p>
+        </div>
+        <div class="grid child-a">
+            <img src="/assets/products_category11.jpg" alt="">
+            <p>Automobile Deals</p>
+        </div>
+        <div class="grid child-a">
+            <img src="/assets/products_category12.gif" alt="">
+            <p>Buy Now, Pay Small Small</p>
+        </div>
+    </div>
+
+    <!-- top sellers -->
+     <div class="top-sellers">
+        <div class="top-header">
+          <h2>Top Sellers</h2>
+          <a href="#">See All ›</a>
+        </div>
+
+        <div class="property-cards">
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-5%</span>
+                    <img src="./assets/jumia_wallet1.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Cerave Acne Control Clea...</p>
+                    <p class="new-price">₦ 3,795</p>
+                    <p class="old-price">₦ 3,995</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <img src="./assets/jumia_wallet2.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Macbook PRO Laptop A1278 13..</p>
+                    <p class="new-price">₦ 193,235</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-34%</span>
+                    <img src="./assets/jumia_wallet_nivea1.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA MEN Deep Body Lotion ...</p>
+                    <p class="new-price">₦ 4,550</p>
+                    <p class="old-price">₦ 6,090</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-76%</span>
+                    <img src="./assets/jumia_wallet3.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Elegant Toothbrush Holder And...</p>
+                    <p class="new-price">₦ 2,199</p>
+                    <p class="old-price">₦ 9,000</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-24%</span>
+                    <img src="./assets/jumia_wallet4.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">GAULIN Trendy Versatile Shoes ...</p>
+                    <p class="new-price">₦ 12,495</p>
+                    <p class="old-price">₦ 16,391</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-24%</span>
+                    <img src="./assets/jumia_wallet5.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Cotton Club AUD DE PERFUME</p>
+                    <p class="new-price">₦ 2,270</p>
+                    <p class="old-price">₦ 2,999</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-53%</span>
+                    <img src="./assets/jumia_wallet6.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">9 in 1 Push Up Rack Board Fitness ..</p>
+                    <p class="new-price">₦ 8,940</p>
+                    <p class="old-price">₦ 19,057</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-9%</span>
+                    <img src="./assets/jumia_wallet7.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Boscon Auto Ignition Table Top ...</p>
+                    <p class="new-price">₦ 17,294</p>
+                    <p class="old-price">₦ 19,023</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-68%</span>
+                    <img src="./assets/jumia_wallet10.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Biore UV Aqua Rich Watery Sun</p>
+                    <p class="new-price">₦ 2,899</p>
+                    <p class="old-price">₦ 9,000</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-2%</span>
+                    <img src="./assets/jumia_wallet9.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">itel PowerPulse B1481 27000m ...</p>
+                    <p class="new-price">₦ 24,000</p>
+                    <p class="old-price">₦ 24,500</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-47%</span>
+                    <img src="./assets/jumia_wallet8.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Inspire Perfume Fragtance INSP...</p>
+                    <p class="new-price">₦ 3,999</p>
+                    <p class="old-price">₦ 7,000</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-47%</span>
+                    <img src="./assets/jumia_wallet12.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Mateamoda Women Shoes San ...</p>
+                    <p class="new-price">₦ 10,082</p>
+                    <p class="old-price">₦ 10,949</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-6%</span>
+                    <img src="./assets/jumia_wallet11.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">itel smart Watch Fit o20 2.04" ...</p>
+                    <p class="new-price">₦ 16,032</p>
+                    <p class="old-price">₦ 17,000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- sponsored products -->
+
+    <div class="sponsored">
+        <div class="top-header">
+          <h2>Sponsored Products</h2>
+        </div>
+
+        <div class="property-cards">
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-21%</span>
+                    <img src="./assets/sponsored-products1.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Sun UV SunScreen Face ...</p>
+                    <p class="new-price">₦ 8,588</p>
+                    <p class="old-price">₦ 10,920</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-40%</span>
+                    <img src="./assets/sponsored-products2.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Sun UV SunScreen Face ...</p>
+                    <p class="new-price">₦ 13,044</p>
+                    <p class="old-price">₦ 21,840</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-36%</span>
+                    <img src="./assets/sponsored-products3.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA dry impact Anti-Perspira...</p>
+                    <p class="new-price">₦ 6,915</p>
+                    <p class="old-price">₦ 10,020</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-34%</span>
+                    <img src="./assets/sponsored-products4.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Radiant & Beauty Even G...</p>
+                    <p class="new-price">₦ 7,684</p>
+                    <p class="old-price">₦ 11,635</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-34%</span>
+                    <img src="./assets/sponsored-products5.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Dry Impact Roll-on For ...</p>
+                    <p class="new-price">₦ 2,296</p>
+                    <p class="old-price">₦ 4,005</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-19%</span>
+                    <img src="./assets/sponsored-products6.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Moisturizing Sun LOtion ...</p>
+                    <p class="new-price">₦ 20,631</p>
+                    <p class="old-price">₦ 25,515</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-17%</span>
+                    <img src="./assets/sponsored-products7.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Radiant & Beauty Even G... ..</p>
+                    <p class="new-price">₦ 4,819</p>
+                    <p class="old-price">₦ 5,020</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-19%</span>
+                    <img src="./assets/sponsored-products1 (1).jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Radiant & Beauty Advan...</p>
+                    <p class="new-price">₦ 4,696</p>
+                    <p class="old-price">₦ 5,820</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-34%</span>
+                    <img src="./assets/sponsored-products2 (1).jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA MEEN Deep Anti-Perspira...</p>
+                    <p class="new-price">₦ 4,044</p>
+                    <p class="old-price">₦ 6,125</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-2%</span>
+                    <img src="./assets/jumia_wallet9.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">itel PowerPulse B1481 27000m ...</p>
+                    <p class="new-price">₦ 24,000</p>
+                    <p class="old-price">₦ 24,500</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-47%</span>
+                    <img src="./assets/jumia_wallet8.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Inspire Perfume Fragtance INSP...</p>
+                    <p class="new-price">₦ 3,999</p>
+                    <p class="old-price">₦ 7,000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+     <!-- limited deals -->
+    <div class="deals-category">
+        <div class="deals-header">
+            <h2>Limited Stock deals <span>| Up to 65% Off</span></h2>
+            <a href="#">See All ›</a>
+        </div>
+
+  
+        <div class="deals">
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-50%</span>
+                    <img src="/assets/limited-deals01.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">Oraimo Traveler 15 Power...</p>
+                    <p class="new-price">₦ 14,295</p>
+                    <p class="old-price">₦ 28,500</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-6%</span>
+                    <img src="/assets/limited-deals02.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">Samsung Galaxy A06 6.7"...</p>
+                    <p class="new-price">₦ 119,944</p>
+                    <p class="old-price">₦ 127,518</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-34%</span>
+                    <img src="/assets/limited-deals03.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">NIVEA Radiant & Beauty...</p>
+                    <p class="new-price">₦ 7,684</p>
+                    <p class="old-price">₦ 11,635</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-64%</span>
+                    <img src="/assets/limited-deals03.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">SILVER CREST 2L Industri...</p>
+                    <p class="new-price">₦ 21,750</p>
+                    <p class="old-price">₦ 60,000</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-37%</span>
+                    <img src="/assets/limited-deals04.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">LP LP 32 Digital TV, Frame...</p>
+                    <p class="new-price">₦ 93,300</p>
+                    <p class="old-price">₦ 148,500</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-1%</span>
+                    <img src="/assets/limited-deals05.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">XIAOMI REDMI A5 - 6.88...</p>
+                    <p class="new-price">₦ 109,706</p>
+                    <p class="old-price">₦ 111,330</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-14%</span>
+                    <img src="/assets/limited-deals06.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">Malta Guinness Can 330...</p>
+                    <p class="new-price">₦ 16,348</p>
+                    <p class="old-price">₦ 18,933</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-29%</span>
+                    <img src="/assets/tcl.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">TCL 55 Inches UHD 4k Go...</p>
+                    <p class="new-price">₦ 424,999</p>
+                    <p class="old-price">₦ 600,000</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-10%</span>
+                    <img src="/assets/limited-deals07.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">itel A100C 6.6" 2GB RAM/...</p>
+                    <p class="new-price">₦ 89,900</p>
+                    <p class="old-price">₦ 100,000</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-65%</span>
+                    <img src="/assets/limited-deals08.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">Trendyol Woven Evening...</p>
+                    <p class="new-price">₦ 7,440</p>
+                    <p class="old-price">₦ 21,000</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-21%</span>
+                    <img src="/assets/limited-deals09.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">Aeon 3 Burner, 1 Electric...</p>
+                    <p class="new-price">₦ 129,999</p>
+                    <p class="old-price">₦ 164,390</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-18%</span>
+                    <img src="/assets/limited-deals10.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">Hp EliteBook 840 G7 10th...</p>
+                    <p class="new-price">₦ 525,000</p>
+                    <p class="old-price">₦ 640,000</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-57%</span>
+                    <img src="/assets/limited-deals11.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">ECOFLOW RIVER 2 MAX Portabl...</p>
+                    <p class="new-price">₦ 448,490</p>
+                    <p class="old-price">₦ 1,041,510</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-51%</span>
+                    <img src="/assets/hasen.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">HANSEN 18 inches industrial le...</p>
+                    <p class="new-price">₦ 18,500</p>
+                    <p class="old-price">₦ 30,000</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-59%</span>
+                    <img src="/assets/limited-deals12.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">HITHIUM HeroEE 2kWh Portabl...</p>
+                    <p class="new-price">₦ 580,000</p>
+                    <p class="old-price">₦ 1,400,000</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-29%</span>
+                    <img src="/assets/royal.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">Royal 65" Inches Google ...</p>
+                    <p class="new-price">₦ 601,999</p>
+                    <p class="old-price">₦ 850,000</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-19%</span>
+                    <img src="/assets/limited-deals13.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">MAXI 20 Litres Manual Microwa...</p>
+                    <p class="new-price">₦ 53,849</p>
+                    <p class="old-price">₦ 66,550</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-59%</span>
+                    <img src="/assets/limited-deals14.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">Men's Trendy Multi Short Sleev...</p>
+                    <p class="new-price">₦ 7,350</p>
+                    <p class="old-price">₦ 18,000</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-5%</span>
+                    <img src="/assets/limited-deals20.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">Infinix Smart 10 6.7" 3GB RAM/...</p>
+                    <p class="new-price">₦ 115,914</p>
+                    <p class="old-price">₦ 121,706</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-75%</span>
+                    <img src="/assets/limited-deals16.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">AIDALIU Ladies Bodycon Dresse...</p>
+                    <p class="new-price">₦ 10,050</p>
+                    <p class="old-price">₦ 20,370 -₦ 39,765 </p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-25%</span>
+                    <img src="/assets/limited-deals17.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">Dr Teal's B/Lot 18Oz Vitamin C...</p>
+                    <p class="new-price">₦ 7,500</p>
+                    <p class="old-price">₦ 10,055</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-17%</span>
+                    <img src="/assets/limited-deals18.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">Skyrun 7kg Twin Tub Semi-auto...</p>
+                    <p class="new-price">₦ 165,000</p>
+                    <p class="old-price">₦ 190,000</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-37%</span>
+                    <img src="/assets/limited-deals19.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">C Idea CM8200 10.1 Tablet...</p>
+                    <p class="new-price">₦ 127,500</p>
+                    <p class="old-price">₦ 202,500</p>
+                </div>
+            </div>
+
+            <div class="child">
+                <div class="deals-image">
+                    <span class="discount">-54%</span>
+                    <img src="/assets/limited-deals20.jpg" alt="">
+                </div>
+                <div class="child-info">
+                    <p class="product-name">Oraimo Watch 6N 1.83" Full To...</p>
+                    <p class="new-price">₦ 20,000</p>
+                    <p class="old-price">₦ 45,000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- NIVEA OFFICIAL STORE -->
+    <div class="nivea-category">
+        <div class="top-header">
+          <h2>NIVEA OFFICIAL STORE</h2>
+          <a href="#">See All ›</a>
+        </div>
+
+        <div class="property-cards">
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-21%</span>
+                    <img src="./assets/sponsored-products1.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Sun UV SunScreen Face ...</p>
+                    <p class="new-price">₦ 8,588</p>
+                    <p class="old-price">₦ 10,920</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-40%</span>
+                    <img src="./assets/sponsored-products2.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Sun UV SunScreen Face ...</p>
+                    <p class="new-price">₦ 13,044</p>
+                    <p class="old-price">₦ 21,840</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-36%</span>
+                    <img src="./assets/sponsored-products3.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA dry impact Anti-Perspira...</p>
+                    <p class="new-price">₦ 6,915</p>
+                    <p class="old-price">₦ 10,020</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-34%</span>
+                    <img src="./assets/sponsored-products4.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Radiant & Beauty Even G...</p>
+                    <p class="new-price">₦ 7,684</p>
+                    <p class="old-price">₦ 11,635</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-34%</span>
+                    <img src="./assets/sponsored-products5.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Dry Impact Roll-on For ...</p>
+                    <p class="new-price">₦ 2,296</p>
+                    <p class="old-price">₦ 4,005</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-19%</span>
+                    <img src="./assets/sponsored-products6.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Moisturizing Sun LOtion ...</p>
+                    <p class="new-price">₦ 20,631</p>
+                    <p class="old-price">₦ 25,515</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-17%</span>
+                    <img src="./assets/sponsored-products7.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Radiant & Beauty Even G... ..</p>
+                    <p class="new-price">₦ 4,819</p>
+                    <p class="old-price">₦ 5,020</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-19%</span>
+                    <img src="./assets/sponsored-products1 (1).jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA Radiant & Beauty Advan...</p>
+                    <p class="new-price">₦ 4,696</p>
+                    <p class="old-price">₦ 5,820</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-34%</span>
+                    <img src="./assets/sponsored-products2 (1).jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">NIVEA MEEN Deep Anti-Perspira...</p>
+                    <p class="new-price">₦ 4,044</p>
+                    <p class="old-price">₦ 6,125</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-2%</span>
+                    <img src="./assets/jumia_wallet9.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">itel PowerPulse B1481 27000m ...</p>
+                    <p class="new-price">₦ 24,000</p>
+                    <p class="old-price">₦ 24,500</p>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="card-img">
+                    <span class="discount">-47%</span>
+                    <img src="./assets/jumia_wallet8.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <p class="product-name">Inspire Perfume Fragtance INSP...</p>
+                    <p class="new-price">₦ 3,999</p>
+                    <p class="old-price">₦ 7,000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
