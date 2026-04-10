@@ -14,8 +14,23 @@
         <h2>Welcome to Jumia</h2>
         <p class="text">Use your email or phone to log in or sign up.</p>
 
-        <input type="email" name="email" id="email" placeholder="Email or Mobile Number*">
-       <a class="btn btn-primary" href="/password.html" role="button">Continue</a>
+       <form form action="password.html" method="get">
+    <input type="email" id="email-login" name="login" required placeholder="Email or Mobile Number*">
+    <input class="btn" type="submit" value="Continue">
+    </form>
+
+      <!-- <form action="password.html" method="get">
+        <input
+          type="text"
+          id="email-login"
+          name="login"
+          required
+          placeholder="Email or Mobile Number*"
+          pattern="^([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}|[0-9]{7,15})$"
+          title="Enter a valid email address or mobile number (7-15 digits)"
+        />
+        <input class="btn" type="submit" value="Continue" />
+      </form> -->
 
         <div class="divider">
             <span>Or log in with</span>
