@@ -353,6 +353,9 @@ section {
   gap: 8px;
   cursor: pointer;
 }
+.category-item:hover{
+  transform: scale(1.05);
+}
 .category-img {
   width: 110px;
   height: 100px;
@@ -1079,16 +1082,30 @@ footer a {
   }
 }
 
-@media (max-width: 1070px) {
+@media (max-width: 1100px) {
     .top {
         display: none !important;
     }
+    .nav-box{
+    width: 90% !important;
+  }
+  .navboot form {
+    width: 85% !important;
+    margin-top: 10px !important;
+  }
 }
 
 @media (max-width: 1024px) {
     .top{
         display: none !important;
     }
+    .nav-box{
+    width: 90% !important;
+  }
+  .navboot form {
+    width: 85% !important;
+    margin-top: 10px !important;
+  }
 .layout aside,
   .box {
     display: none;
@@ -1156,6 +1173,15 @@ footer a {
     margin-top: 20px;
     padding: 0 10px;
   }
+  .nav-box{
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 0px 10px 0px 10px !important;
+  }
+  .navboot form {
+    width: 85% !important;
+    margin-top: 10px !important;
+  }
 
   .category-wrapper,
   .top-items,
@@ -1205,9 +1231,14 @@ footer a {
     width: 100%;
     height: 50px;
   }
-
+  .nav-box{
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 0px 10px 0px 10px !important;
+  }
   .navboot form {
-    width: 130px;
+    width: 85% !important;
+    margin-top: 10px !important;
   }
   .navbar-brand img {
     width: 80px;
@@ -1300,8 +1331,14 @@ footer a {
 
 
 @media (max-width: 480px) {
+  .nav-box{
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 0px 10px 0px 10px !important;
+  }
   .navboot form {
-    width: 100px;
+    width: 85% !important;
+    margin-top: 10px !important;
   }
   .navbar-brand img {
     width: 70px;
